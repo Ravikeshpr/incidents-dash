@@ -1,32 +1,49 @@
 import React from 'react'
 import './IncidentList.css'
-import { priorityMap } from '../../../constants/constants'
+import { priorityMap, ARIA_TEXT } from '../../../constants/constants'
 import { formatDateTime } from '../../../utils/helperFunctions'
 
 const IncidentList = ({ incidents }) => {
   return (
-    <div className="incident-list">
+    <div
+      className="incident-list"
+      role="list"
+      aria-label={ARIA_TEXT.incidentList}
+    >
       {incidents.map((incident) => (
-        <div key={incident.id} className="incident-card">
-          <div className="incident-icon">
+        <article
+          key={incident.id}
+          className="incident-card"
+          role="listitem"
+          aria-label={ARIA_TEXT.incidentDetails(
+            incident.name,
+            priorityMap[incident.priority].label,
+            incident.locationName,
+            formatDateTime(incident.datetime),
+          )}
+        >
+          <div className="incident-icon" aria-hidden="true">
             <img
               src={priorityMap[incident.priority].icon}
-              alt={priorityMap[incident.priority].label}
+              alt={
+                ARIA_TEXT.priorityIconAlt[
+                  priorityMap[incident.priority].label.toLowerCase()
+                ]
+              }
               className="priority-icon"
             />
           </div>
           <div className="incident-body">
-            <span className="incident-field">
+            <div className="incident-field">
               {formatDateTime(incident.datetime)}
-            </span>
+            </div>
             <div className="incident-field">{incident.name}</div>
             <div className="incident-field">{incident.locationName}</div>
-
             <div className="incident-field">
               {priorityMap[incident.priority].label}
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   )

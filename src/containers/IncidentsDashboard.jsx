@@ -5,6 +5,7 @@ import useSortedData from '../hooks/useSortedData'
 import './IncidentsDashboard.css'
 import IncidentTable from '../components/incidents/IncidentTable/IncidentTable'
 import IncidentList from '../components/incidents/IncidentList/IncidentList'
+import { ARIA_TEXT } from '../constants/constants'
 
 const IncidentsDashboard = () => {
   const dispatch = useDispatch()
@@ -26,18 +27,26 @@ const IncidentsDashboard = () => {
   }, [dispatch])
 
   if (loading) {
-    return <div className="loading">Loading incidents...</div>
+    return (
+      <div className="loading" role="status" aria-live="polite">
+        {ARIA_TEXT.loadingIncidents}
+      </div>
+    )
   }
 
   if (error) {
-    return <div className="error">Error: {error}</div>
+    return (
+      <div className="error" role="alert" aria-live="assertive">
+        {ARIA_TEXT.errorLoadingIncidents}: {error}
+      </div>
+    )
   }
 
   return (
-    <div className="incidents-dashboard">
+    <section className="incidents-dashboard" aria-label="Incidents Dashboard">
       <IncidentTable incidents={sortedIncidents} />
       <IncidentList incidents={sortedIncidents} />
-    </div>
+    </section>
   )
 }
 
