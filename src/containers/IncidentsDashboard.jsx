@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchIncidents } from '../store/incidentsSlice'
 import useSortedData from '../hooks/useSortedData'
 import './IncidentsDashboard.css'
+import IncidentTable from '../components/incidents/IncidentTable/IncidentTable'
+import IncidentList from '../components/incidents/IncidentList/IncidentList'
 
 const IncidentsDashboard = () => {
   const dispatch = useDispatch()
@@ -33,7 +35,8 @@ const IncidentsDashboard = () => {
 
   return (
     <div className="incidents-dashboard">
-      <output>{JSON.stringify(sortedIncidents)}</output>
+      <IncidentTable incidents={sortedIncidents} />
+      <IncidentList incidents={sortedIncidents} />
     </div>
   )
 }

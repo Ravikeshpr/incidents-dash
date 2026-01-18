@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { compareValues } from '../utils/helperFunctions'
 
 // Custom hook for sorting data by primary and secondary fields
 // data - Array of objects to sort
@@ -28,20 +29,3 @@ const useSortedData = (data, primaryField, secondaryField) => {
 }
 
 export default useSortedData
-
-const compareValues = (a, b, field) => {
-  const aValue = a[field.key]
-  const bValue = b[field.key]
-
-  let comparison = 0
-
-  if (field.type === 'date') {
-    comparison = new Date(aValue) - new Date(bValue)
-  } else if (field.type === 'number') {
-    comparison = aValue - bValue
-  } else {
-    comparison = String(aValue).localeCompare(String(bValue))
-  }
-
-  return field.order === 'desc' ? -comparison : comparison
-}

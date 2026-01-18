@@ -1,0 +1,45 @@
+.incident-list {
+  display: none;
+  flex-direction: column;
+}
+
+.incident-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #303030;
+  color: #dadada;
+  padding: 1rem;
+  border-bottom: 1px solid #757575;
+  transition: background-color 0.2s ease;
+}
+
+.incident-card:hover {
+  background-color: #202020;
+}
+
+.incident-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #374151;
+}
+
+.incident-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 0 1rem;
+  gap: 1rem;
+}
+
+.incident-field {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .incident-list {
+    display: flex;
+  }
+}
