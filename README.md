@@ -30,6 +30,52 @@ This project is a React and redux based application for showing Incidents in a t
    http://localhost:5173/
    ```
 
+## Deployment strategy
+
+AWS S3 + CloudFront
+
+### Description
+
+For just Frontend we can deploy the built static files on S3 and serve them through CloudFront CDN for global distribution.
+
+### Architecture
+
+```
+┌─────────────────┐      ┌─────────────┐      ┌─────────────┐
+│     Users       │ ──── │  CloudFront │ ──── │   S3 Bucket │
+│  (Worldwide)    │      │    (CDN)    │      │   (Static)  │
+└─────────────────┘      └─────────────┘      └─────────────┘
+```
+
+### Implementation Steps
+
+1. **Build the Application**
+
+   ```bash
+   npm run build
+   ```
+
+2. **Create S3 Bucket**
+3. **Configure Bucket for Static Hosting**
+4. **Upload Build Files**
+5. **Create CloudFront Distribution**
+6. **Configure S3 Bucket Policy**
+
+### Pros
+
+- ✅ **Extremely cost-effective** - Pay only for storage and data transfer
+- ✅ **Global CDN** - Low latency worldwide
+- ✅ **Highly scalable** - Handles millions of requests automatically
+- ✅ **Zero server management** - Fully managed infrastructure
+- ✅ **HTTPS included** - Free SSL/TLS certificates
+- ✅ **99.99% availability** - Built-in redundancy
+
+### Cons
+
+- ❌ Limited to static content
+- ❌ CloudFront cache invalidation can take time
+- ❌ Requires separate solution for API backend
+
 ## Following is the functionality and features implemented
 
 1. React components are used to build UI components and CSS media queries are used to make the app responsive.
