@@ -1,0 +1,18 @@
+.incidents-dashboard {
+  padding: 20px;
+  background-color: #303030;
+  color: #f9fafb;
+  min-height: 100vh;
+}
+
+.loading,
+.error {
+  color: #f9fafb;
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}
+
+.error {
+  color: #ef4444;
+}
